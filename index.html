@@ -34,8 +34,6 @@ header{
   margin:auto
 }
 
-/* ВЕРХНЯЯ ПАНЕЛЬ */
-
 .topbar{
   display:flex;
   justify-content:space-between;
@@ -99,8 +97,6 @@ header{
   cursor:pointer;
   font-weight:700;
 }
-
-/* HERO */
 
 .hero{
   display:grid;
@@ -615,6 +611,17 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  increment
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+/* FIREBASE */
 
 const firebaseConfig = {
 
@@ -638,6 +645,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
+
+const db = getFirestore(app);
 
 const provider = new GoogleAuthProvider();
 
@@ -679,37 +688,19 @@ loginButton.onclick = async () => {
 
 logoutButton.onclick = async () => {
 
-  await signOut(auth);
+  try {
 
-};
+    await signOut(auth);
 
+  } catch(error) {
 
-onAuthStateChanged(auth, (user) => {
+    console.error(error);
 
-  if(user){
-
-    loginButton.style.display = "none";
-
-    userInfo.style.display = "flex";
-
-    userName.textContent =
-      user.displayName || "Пользователь";
-
-    if(user.photoURL){
-
-      userPhoto.src = user.photoURL;
-
-    }
-
-  }else{
-
-    loginButton.style.display = "block";
-
-    userInfo.style.display = "none";
+    alert("Не удалось выйти из аккаунта.");
 
   }
 
-});
+};
 
 
 /* ТОЧКИ ПРИЁМА */
@@ -795,8 +786,9 @@ let filter = "all";
 
 /* ДОСТИЖЕНИЯ */
 
-let recycleCount =
-Number(localStorage.getItem("recycleCount")) || 0;
+let recycleCount = 0;
+
+let currentUser = null;
 
 
 function updateAchievements(){
@@ -835,23 +827,159 @@ function updateAchievements(){
 }
 
 
+/* ЗАГРУЗКА ДОСТИЖЕНИЙ ПОЛЬЗОВАТЕЛЯ */
+
+async function loadUserAchievements(user){
+
+  try {
+
+    const userRef =
+      doc(db, "users", user.uid);
+
+    const userSnapshot =
+      await getDoc(userRef);
+
+
+    if(userSnapshot.exists()){
+
+      const data =
+        userSnapshot.data();
+
+      recycleCount =
+        Number(data.recycleCount) || 0;
+
+    }else{
+
+      recycleCount = 0;
+
+      await setDoc(
+        userRef,
+        {
+          recycleCount: 0
+        }
+      );
+
+    }
+
+    updateAchievements();
+
+  } catch(error) {
+
+    console.error(
+      "Ошибка загрузки достижений:",
+      error
+    );
+
+    alert(
+      "Не удалось загрузить достижения из базы данных."
+    );
+
+  }
+
+}
+
+
+/* СОХРАНЕНИЕ НОВОЙ СДАЧИ */
+
 document
 .getElementById("recycleButton")
-.onclick = () => {
+.onclick = async () => {
 
-  recycleCount++;
+  if(!currentUser){
 
-  localStorage.setItem(
-    "recycleCount",
-    recycleCount
-  );
+    alert(
+      "Сначала войдите через Google, чтобы сохранять свои достижения."
+    );
 
-  updateAchievements();
+    return;
+
+  }
+
+
+  try {
+
+    const userRef =
+      doc(db, "users", currentUser.uid);
+
+
+    await setDoc(
+      userRef,
+      {
+        recycleCount: increment(1)
+      },
+      {
+        merge:true
+      }
+    );
+
+
+    recycleCount++;
+
+    updateAchievements();
+
+  } catch(error) {
+
+    console.error(
+      "Ошибка сохранения:",
+      error
+    );
+
+    alert(
+      "Не удалось сохранить достижение."
+    );
+
+  }
 
 };
 
 
 updateAchievements();
+
+
+/* ПРОВЕРКА ВХОДА */
+
+onAuthStateChanged(
+  auth,
+  async (user) => {
+
+    currentUser = user;
+
+
+    if(user){
+
+      loginButton.style.display = "none";
+
+      userInfo.style.display = "flex";
+
+      userName.textContent =
+        user.displayName || "Пользователь";
+
+
+      if(user.photoURL){
+
+        userPhoto.src =
+          user.photoURL;
+
+      }
+
+
+      await loadUserAchievements(user);
+
+
+    }else{
+
+      loginButton.style.display = "block";
+
+      userInfo.style.display = "none";
+
+      recycleCount = 0;
+
+      updateAchievements();
+
+    }
+
+  }
+);
 
 
 /* ПОИСК И ФИЛЬТРЫ */
