@@ -1,82 +1,671 @@
+```html
 <!doctype html>
 <html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RecycleMap Astana — пункты приёма вторсырья</title>
+
 <style>
-:root{--green:#1f8f5f;--dark:#12352a;--light:#f3f8f5;--card:#fff;--muted:#66756e}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--light);color:var(--dark)}
-header{background:linear-gradient(135deg,#12352a,#1f8f5f);color:#fff;padding:48px 20px 70px}
-.wrap{max-width:1100px;margin:auto}.brand{font-weight:800;font-size:22px}.hero{display:grid;grid-template-columns:1.4fr .8fr;gap:35px;align-items:center;margin-top:45px}
-h1{font-size:52px;line-height:1.03;margin:0 0 18px}.hero p{font-size:19px;line-height:1.55;max-width:650px;color:#e7f4ed}
-.hero-box{background:rgba(255,255,255,.12);padding:25px;border:1px solid rgba(255,255,255,.2);border-radius:22px}
-.hero-box b{font-size:36px;display:block}.hero-box span{opacity:.9}
-main{padding:35px 20px 60px}.controls{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:25px}
-button{border:0;border-radius:999px;padding:12px 17px;background:#fff;color:var(--dark);cursor:pointer;font-weight:700;box-shadow:0 2px 10px #12352a12}
-button.active,button:hover{background:var(--green);color:#fff}
-.search{width:100%;padding:15px 18px;border:1px solid #d8e3dd;border-radius:14px;font-size:16px;margin-bottom:18px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.card{background:var(--card);padding:22px;border-radius:20px;box-shadow:0 5px 20px #12352a0d;border:1px solid #e2ebe6}
-.card h3{margin:0 0 8px;font-size:20px}.addr{color:var(--muted);margin-bottom:12px}.tags{display:flex;gap:7px;flex-wrap:wrap}.tag{background:#e8f5ee;color:#16734b;padding:6px 9px;border-radius:8px;font-size:13px;font-weight:700}
-.info{margin-top:35px;background:#e7f5ed;border-radius:20px;padding:22px}.info h2{margin-top:0}.small{font-size:13px;color:var(--muted);line-height:1.5}
-footer{padding:25px 20px;background:#102d24;color:#cfe3da;text-align:center;font-size:13px}
-@media(max-width:750px){.hero{grid-template-columns:1fr}h1{font-size:40px}.grid{grid-template-columns:1fr}}
+:root{
+--green:#1f8f5f;
+--dark:#12352a;
+--light:#f3f8f5;
+--card:#fff;
+--muted:#66756e;
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Inter,Arial,sans-serif;
+background:var(--light);
+color:var(--dark)
+}
+
+header{
+background:linear-gradient(135deg,#12352a,#1f8f5f);
+color:#fff;
+padding:48px 20px 70px
+}
+
+.wrap{
+max-width:1100px;
+margin:auto
+}
+
+.brand{
+font-weight:800;
+font-size:22px
+}
+
+.hero{
+display:grid;
+grid-template-columns:1.4fr .8fr;
+gap:35px;
+align-items:center;
+margin-top:45px
+}
+
+h1{
+font-size:52px;
+line-height:1.03;
+margin:0 0 18px
+}
+
+.hero p{
+font-size:19px;
+line-height:1.55;
+max-width:650px;
+color:#e7f4ed
+}
+
+.hero-box{
+background:rgba(255,255,255,.12);
+padding:25px;
+border:1px solid rgba(255,255,255,.2);
+border-radius:22px
+}
+
+.hero-box b{
+font-size:36px;
+display:block
+}
+
+.hero-box span{
+opacity:.9
+}
+
+main{
+padding:35px 20px 60px
+}
+
+.controls{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-bottom:25px
+}
+
+button{
+border:0;
+border-radius:999px;
+padding:12px 17px;
+background:#fff;
+color:var(--dark);
+cursor:pointer;
+font-weight:700;
+box-shadow:0 2px 10px #12352a12
+}
+
+button.active,
+button:hover{
+background:var(--green);
+color:#fff
+}
+
+.search{
+width:100%;
+padding:15px 18px;
+border:1px solid #d8e3dd;
+border-radius:14px;
+font-size:16px;
+margin-bottom:18px
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:18px
+}
+
+.card{
+background:var(--card);
+padding:22px;
+border-radius:20px;
+box-shadow:0 5px 20px #12352a0d;
+border:1px solid #e2ebe6
+}
+
+.card h3{
+margin:0 0 8px;
+font-size:20px
+}
+
+.addr{
+color:var(--muted);
+margin-bottom:12px
+}
+
+.tags{
+display:flex;
+gap:7px;
+flex-wrap:wrap
+}
+
+.tag{
+background:#e8f5ee;
+color:#16734b;
+padding:6px 9px;
+border-radius:8px;
+font-size:13px;
+font-weight:700
+}
+
+/* ДОСТИЖЕНИЯ */
+
+.achievements{
+margin-bottom:35px;
+background:#fff;
+border-radius:22px;
+padding:25px;
+box-shadow:0 5px 20px #12352a0d;
+border:1px solid #e2ebe6
+}
+
+.achievements h2{
+margin-top:0;
+margin-bottom:8px
+}
+
+.progress{
+font-size:18px;
+font-weight:700;
+margin:15px 0
+}
+
+.progress-bar{
+height:12px;
+background:#e2ebe6;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:20px
+}
+
+.progress-fill{
+height:100%;
+width:0%;
+background:var(--green);
+transition:.4s
+}
+
+.achievement-grid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:12px
+}
+
+.achievement{
+padding:15px;
+border-radius:16px;
+background:#f1f5f3;
+text-align:center;
+opacity:.45;
+transition:.3s
+}
+
+.achievement.unlocked{
+opacity:1;
+background:#e7f5ed;
+border:1px solid #b9dfca
+}
+
+.achievement-icon{
+font-size:30px;
+margin-bottom:7px
+}
+
+.achievement-title{
+font-weight:800;
+font-size:14px
+}
+
+.achievement-desc{
+font-size:12px;
+color:var(--muted);
+margin-top:5px
+}
+
+.recycle-button{
+background:var(--green);
+color:#fff;
+font-size:16px;
+padding:14px 22px;
+margin-top:10px
+}
+
+.recycle-button:hover{
+background:#16734b
+}
+
+.trust{
+margin-top:18px;
+padding:14px;
+background:#f3f8f5;
+border-radius:12px;
+font-size:13px;
+line-height:1.5;
+color:var(--muted)
+}
+
+.info{
+margin-top:35px;
+background:#e7f5ed;
+border-radius:20px;
+padding:22px
+}
+
+.info h2{
+margin-top:0
+}
+
+.small{
+font-size:13px;
+color:var(--muted);
+line-height:1.5
+}
+
+footer{
+padding:25px 20px;
+background:#102d24;
+color:#cfe3da;
+text-align:center;
+font-size:13px
+}
+
+@media(max-width:900px){
+.achievement-grid{
+grid-template-columns:repeat(3,1fr)
+}
+}
+
+@media(max-width:750px){
+.hero{
+grid-template-columns:1fr
+}
+
+h1{
+font-size:40px
+}
+
+.grid{
+grid-template-columns:1fr
+}
+
+.achievement-grid{
+grid-template-columns:repeat(2,1fr)
+}
+}
 </style>
 </head>
+
 <body>
+
 <header>
 <div class="wrap">
+
 <div class="brand">♻️ RecycleMap Astana</div>
+
 <div class="hero">
+
 <div>
 <h1>Не выбрасывай.<br>Найди пункт.</h1>
-<p>Простой способ найти в Астане места, где можно сдать вторсырьё. Выберите тип отходов и найдите подходящий пункт.</p>
+
+<p>
+Простой способ найти в Астане места, где можно сдать вторсырьё.
+Выберите тип отходов и найдите подходящий пункт.
+</p>
 </div>
-<div class="hero-box"><b>10+</b><span>локаций LS Ecolife в Астане указаны на официальной карте компании</span></div>
+
+<div class="hero-box">
+<b>10+</b>
+<span>
+локаций LS Ecolife в Астане указаны на официальной карте компании
+</span>
+</div>
+
 </div>
 </div>
 </header>
+
 <main class="wrap">
-<input id="search" class="search" placeholder="🔎 Поиск по адресу или названию...">
-<div class="controls" id="filters">
-<button class="active" data-filter="all">Все</button>
-<button data-filter="plastic">🥤 Пластик</button>
-<button data-filter="paper">📄 Бумага</button>
-<button data-filter="metal">🥫 Металл</button>
-<button data-filter="electronics">💻 Электроника</button>
+
+<!-- ДОСТИЖЕНИЯ -->
+
+<div class="achievements">
+
+<h2>🏆 Мои эко-достижения</h2>
+
+<p>
+Отмечай свои сдачи отходов и открывай новые достижения.
+</p>
+
+<div class="progress">
+Сдано отходов: <span id="count">0</span>
 </div>
+
+<div class="progress-bar">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+
+<button class="recycle-button" onclick="addRecycle()">
+♻️ Я сдал отходы
+</button>
+
+<div class="trust">
+🔐 <b>Важно:</b> количество сдач основано на действиях и честности пользователя
+и предназначено для мотивации. Сайт не проверяет фактическую сдачу отходов.
+</div>
+
+<br>
+
+<div class="achievement-grid">
+
+<div class="achievement" id="a1">
+<div class="achievement-icon">🌱</div>
+<div class="achievement-title">Первый шаг</div>
+<div class="achievement-desc">1 сдача</div>
+</div>
+
+<div class="achievement" id="a2">
+<div class="achievement-icon">♻️</div>
+<div class="achievement-title">Эко-новичок</div>
+<div class="achievement-desc">5 сдач</div>
+</div>
+
+<div class="achievement" id="a3">
+<div class="achievement-icon">🌿</div>
+<div class="achievement-title">Эко-активист</div>
+<div class="achievement-desc">10 сдач</div>
+</div>
+
+<div class="achievement" id="a4">
+<div class="achievement-icon">🌍</div>
+<div class="achievement-title">Защитник планеты</div>
+<div class="achievement-desc">25 сдач</div>
+</div>
+
+<div class="achievement" id="a5">
+<div class="achievement-icon">🏆</div>
+<div class="achievement-title">Эко-легенда</div>
+<div class="achievement-desc">50 сдач</div>
+</div>
+
+</div>
+
+</div>
+
+<input
+id="search"
+class="search"
+placeholder="🔎 Поиск по адресу или названию..."
+>
+
+<div class="controls" id="filters">
+
+<button class="active" data-filter="all">Все</button>
+
+<button data-filter="plastic">
+🥤 Пластик
+</button>
+
+<button data-filter="paper">
+📄 Бумага
+</button>
+
+<button data-filter="metal">
+🥫 Металл
+</button>
+
+<button data-filter="electronics">
+💻 Электроника
+</button>
+
+</div>
+
 <div class="grid" id="list"></div>
 
 <div class="info">
+
 <h2>🌱 Зачем нужен RecycleMap?</h2>
-<p>Проблема проекта: человеку часто сложно быстро понять, куда отвезти конкретный вид отходов. RecycleMap собирает пункты в одном месте и позволяет фильтровать их по типу вторсырья.</p>
-<p class="small"><b>Источник данных:</b> официальная карта LS Ecolife и актуальные картографические данные. Перед поездкой рекомендуется проверить, принимают ли выбранный материал и не изменился ли график.</p>
+
+<p>
+Проблема проекта: человеку часто сложно быстро понять,
+куда отвезти конкретный вид отходов. RecycleMap собирает
+пункты в одном месте и позволяет фильтровать их по типу вторсырья.
+</p>
+
+<p class="small">
+<b>Источник данных:</b> официальная карта LS Ecolife и актуальные
+картографические данные. Перед поездкой рекомендуется проверить,
+принимают ли выбранный материал и не изменился ли график.
+</p>
+
 </div>
+
 </main>
-<footer>RecycleMap Astana · школьный социальный проект · данные требуют периодического обновления</footer>
+
+<footer>
+RecycleMap Astana · школьный социальный проект · данные требуют периодического обновления
+</footer>
 
 <script>
+
 const points = [
-{name:"LS Ecolife",addr:"ул. Телжан Шонанулы, 36А",hours:"Пн–Пт 09:00–20:00 · Сб–Вс 09:00–18:00",types:["plastic","paper","metal"],label:["Пластик","Бумага","Металл"],map:"https://www.google.com/maps/search/?api=1&query=Астана+ул.+Телжан+Шонанулы+36А"},
-{name:"LS Ecolife",addr:"ул. Габидена Мустафина, 17/1",hours:"Вт–Сб 09:00–18:00 · Пн и Вс — выходной",types:["plastic","paper","metal"],label:["Пластик","Бумага","Металл"],map:"https://www.google.com/maps/search/?api=1&query=Астана+ул.+Габидена+Мустафина+17%2F1"},
-{name:"LS Ecolife",addr:"ул. Каныша Сатпаева, 29",hours:"Вт–Вс 10:00–19:00 · Пн — выходной",types:["plastic","paper","metal"],label:["Пластик","Бумага","Металл"],map:"https://www.google.com/maps/search/?api=1&query=Астана+ул.+Каныша+Сатпаева+29"},
-{name:"LS Ecolife",addr:"просп. Сарыарка, 31А",hours:"Пн–Сб 10:00–19:00 · Вс — выходной",types:["plastic","paper","metal"],label:["Пластик","Бумага","Металл"],map:"https://www.google.com/maps/search/?api=1&query=Астана+проспект+Сарыарка+31А"},
-{name:"LS Ecolife",addr:"ул. Газеты Егемен Казахстан, 2/1",hours:"Вт–Вс 10:00–19:00 · Пн — выходной",types:["plastic","paper","metal"],label:["Пластик","Бумага","Металл"],map:"https://www.google.com/maps/search/?api=1&query=Астана+ул.+Газеты+Егемен+Казахстан+2%2F1"},
-{name:"LS Ecolife",addr:"ул. Манаса, 11/4",hours:"Пн 10:00–19:00 · Вт–Сб 10:00–19:00 · Вс — выходной",types:["plastic","paper","metal"],label:["Пластик","Бумага","Металл"],map:"https://www.google.com/maps/search/?api=1&query=Астана+ул.+Манаса+11%2F4"},
-{name:"LS Astana",addr:"просп. Рахимжана Кошкарбаева, 44",hours:"График лучше уточнить перед поездкой",types:["plastic","paper","metal"],label:["Пластик","Бумага","Металл"],map:"https://www.google.com/maps/search/?api=1&query=Астана+проспект+Рахимжана+Кошкарбаева+44"},
-{name:"RVM Freedom Bank",addr:"ул. Сыганак, 46",hours:"Пункт для пластиковых бутылок",types:["plastic"],label:["Пластик"],map:"https://www.google.com/maps/search/?api=1&query=Астана+ул.+Сыганак+46"}
-];
-let filter="all";
-function render(){
- const q=document.getElementById("search").value.toLowerCase();
- const list=points.filter(p=>(filter==="all"||p.types.includes(filter)) && (p.name+" "+p.addr).toLowerCase().includes(q));
- document.getElementById("list").innerHTML=list.map(p=>`
- <article class="card"><h3>${p.name}</h3><div class="addr">📍 ${p.addr}</div>
- <div><b>🕐 ${p.hours}</b></div><div class="tags">${p.label.map(x=>`<span class="tag">${x}</span>`).join("")}</div>
- <br><a href="${p.map}" target="_blank"><button>🗺️ Открыть на карте</button></a></article>`).join("") || "<p>Ничего не найдено.</p>";
+
+{
+name:"LS Ecolife",
+addr:"ул. Телжан Шонанулы, 36А",
+hours:"Пн–Пт 09:00–20:00 · Сб–Вс 09:00–18:00",
+types:["plastic","paper","metal"],
+label:["Пластик","Бумага","Металл"],
+map:"https://www.google.com/maps/search/?api=1&query=Астана+ул.+Телжан+Шонанулы+36А"
+},
+
+{
+name:"LS Ecolife",
+addr:"ул. Габидена Мустафина, 17/1",
+hours:"Вт–Сб 09:00–18:00 · Пн и Вс — выходной",
+types:["plastic","paper","metal"],
+label:["Пластик","Бумага","Металл"],
+map:"https://www.google.com/maps/search/?api=1&query=Астана+ул.+Габидена+Мустафина+17%2F1"
+},
+
+{
+name:"LS Ecolife",
+addr:"ул. Каныша Сатпаева, 29",
+hours:"Вт–Вс 10:00–19:00 · Пн — выходной",
+types:["plastic","paper","metal"],
+label:["Пластик","Бумага","Металл"],
+map:"https://www.google.com/maps/search/?api=1&query=Астана+ул.+Каныша+Сатпаева+29"
+},
+
+{
+name:"LS Ecolife",
+addr:"просп. Сарыарка, 31А",
+hours:"Пн–Сб 10:00–19:00 · Вс — выходной",
+types:["plastic","paper","metal"],
+label:["Пластик","Бумага","Металл"],
+map:"https://www.google.com/maps/search/?api=1&query=Астана+проспект+Сарыарка+31А"
+},
+
+{
+name:"LS Ecolife",
+addr:"ул. Газеты Егемен Казахстан, 2/1",
+hours:"Вт–Вс 10:00–19:00 · Пн — выходной",
+types:["plastic","paper","metal"],
+label:["Пластик","Бумага","Металл"],
+map:"https://www.google.com/maps/search/?api=1&query=Астана+ул.+Газеты+Егемен+Казахстан+2%2F1"
+},
+
+{
+name:"LS Ecolife",
+addr:"ул. Манаса, 11/4",
+hours:"Пн 10:00–19:00 · Вт–Сб 10:00–19:00 · Вс — выходной",
+types:["plastic","paper","metal"],
+label:["Пластик","Бумага","Металл"],
+map:"https://www.google.com/maps/search/?api=1&query=Астана+ул.+Манаса+11%2F4"
+},
+
+{
+name:"LS Astana",
+addr:"просп. Рахимжана Кошкарбаева, 44",
+hours:"График лучше уточнить перед поездкой",
+types:["plastic","paper","metal"],
+label:["Пластик","Бумага","Металл"],
+map:"https://www.google.com/maps/search/?api=1&query=Астана+проспект+Рахимжана+Кошкарбаева+44"
+},
+
+{
+name:"RVM Freedom Bank",
+addr:"ул. Сыганак, 46",
+hours:"Пункт для пластиковых бутылок",
+types:["plastic"],
+label:["Пластик"],
+map:"https://www.google.com/maps/search/?api=1&query=Астана+ул.+Сыганак+46"
 }
-document.querySelectorAll("#filters button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#filters button").forEach(x=>x.classList.remove("active"));b.classList.add("active");filter=b.dataset.filter;render()});
-document.getElementById("search").oninput=render; render();
+
+];
+
+let filter="all";
+
+/* ДОСТИЖЕНИЯ */
+
+let recycleCount = Number(localStorage.getItem("recycleCount")) || 0;
+
+function updateAchievements(){
+
+document.getElementById("count").textContent = recycleCount;
+
+const progress = Math.min((recycleCount / 50) * 100, 100);
+
+document.getElementById("progressFill").style.width = progress + "%";
+
+if(recycleCount >= 1)
+document.getElementById("a1").classList.add("unlocked");
+
+if(recycleCount >= 5)
+document.getElementById("a2").classList.add("unlocked");
+
+if(recycleCount >= 10)
+document.getElementById("a3").classList.add("unlocked");
+
+if(recycleCount >= 25)
+document.getElementById("a4").classList.add("unlocked");
+
+if(recycleCount >= 50)
+document.getElementById("a5").classList.add("unlocked");
+
+}
+
+function addRecycle(){
+
+recycleCount++;
+
+localStorage.setItem("recycleCount", recycleCount);
+
+updateAchievements();
+
+}
+
+updateAchievements();
+
+
+/* ПОИСК И ФИЛЬТРЫ */
+
+function render(){
+
+const q=document
+.getElementById("search")
+.value
+.toLowerCase();
+
+const list=points.filter(
+
+p=>
+(filter==="all"||p.types.includes(filter))
+&&
+(p.name+" "+p.addr)
+.toLowerCase()
+.includes(q)
+
+);
+
+document.getElementById("list").innerHTML=
+
+list.map(p=>`
+
+<article class="card">
+
+<h3>${p.name}</h3>
+
+<div class="addr">
+📍 ${p.addr}
+</div>
+
+<div>
+<b>🕐 ${p.hours}</b>
+</div>
+
+<div class="tags">
+
+${p.label.map(x=>
+`<span class="tag">${x}</span>`
+).join("")}
+
+</div>
+
+<br>
+
+<a href="${p.map}" target="_blank">
+
+<button>
+🗺️ Открыть на карте
+</button>
+
+</a>
+
+</article>
+
+`).join("")
+
+||
+
+"<p>Ничего не найдено.</p>";
+
+}
+
+document
+.querySelectorAll("#filters button")
+.forEach(b=>
+
+b.onclick=()=>{
+
+document
+.querySelectorAll("#filters button")
+.forEach(x=>
+x.classList.remove("active")
+);
+
+b.classList.add("active");
+
+filter=b.dataset.filter;
+
+render();
+
+}
+
+);
+
+document
+.getElementById("search")
+.oninput=render;
+
+render();
+
 </script>
+
 </body>
 </html>
+```
