@@ -16,23 +16,29 @@
 
 *{box-sizing:border-box}
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   margin:0;
   font-family:Inter,Arial,sans-serif;
   background:var(--light);
-  color:var(--dark)
+  color:var(--dark);
 }
 
 header{
   background:linear-gradient(135deg,#12352a,#1f8f5f);
   color:#fff;
-  padding:25px 20px 70px
+  padding:25px 20px 70px;
 }
 
 .wrap{
   max-width:1100px;
-  margin:auto
+  margin:auto;
 }
+
+/* ВЕРХНЯЯ ПАНЕЛЬ */
 
 .topbar{
   display:flex;
@@ -43,7 +49,38 @@ header{
 
 .brand{
   font-weight:800;
-  font-size:22px
+  font-size:22px;
+  white-space:nowrap;
+}
+
+.top-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.navigation{
+  display:flex;
+  gap:7px;
+}
+
+.nav-button{
+  border:0;
+  border-radius:999px;
+  padding:10px 14px;
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  cursor:pointer;
+  font-weight:700;
+  box-shadow:none;
+}
+
+.nav-button:hover,
+.nav-button.active{
+  background:#fff;
+  color:var(--dark);
 }
 
 .auth-area{
@@ -98,46 +135,71 @@ header{
   font-weight:700;
 }
 
+/* HERO */
+
 .hero{
   display:grid;
   grid-template-columns:1.4fr .8fr;
   gap:35px;
   align-items:center;
-  margin-top:45px
+  margin-top:45px;
 }
 
 h1{
   font-size:52px;
   line-height:1.03;
-  margin:0 0 18px
+  margin:0 0 18px;
 }
 
 .hero p{
   font-size:19px;
   line-height:1.55;
   max-width:650px;
-  color:#e7f4ed
+  color:#e7f4ed;
 }
 
 .hero-box{
   background:rgba(255,255,255,.12);
   padding:25px;
   border:1px solid rgba(255,255,255,.2);
-  border-radius:22px
+  border-radius:22px;
 }
 
 .hero-box b{
   font-size:36px;
-  display:block
+  display:block;
 }
 
 .hero-box span{
-  opacity:.9
+  opacity:.9;
 }
 
+/* MAIN */
+
 main{
-  padding:35px 20px 60px
+  padding:35px 20px 60px;
 }
+
+.section{
+  display:none;
+}
+
+.section.active-section{
+  display:block;
+}
+
+.section-title{
+  margin:0 0 10px;
+  font-size:32px;
+}
+
+.section-subtitle{
+  color:var(--muted);
+  margin-top:0;
+  margin-bottom:25px;
+}
+
+/* ПОИСК */
 
 .search{
   width:100%;
@@ -145,14 +207,16 @@ main{
   border:1px solid #d8e3dd;
   border-radius:14px;
   font-size:16px;
-  margin-bottom:18px
+  margin-bottom:18px;
 }
+
+/* ФИЛЬТРЫ */
 
 .controls{
   display:flex;
   gap:12px;
   flex-wrap:wrap;
-  margin-bottom:25px
+  margin-bottom:25px;
 }
 
 button{
@@ -163,13 +227,13 @@ button{
   color:var(--dark);
   cursor:pointer;
   font-weight:700;
-  box-shadow:0 2px 10px #12352a12
+  box-shadow:0 2px 10px #12352a12;
 }
 
 .controls button.active,
 .controls button:hover{
   background:var(--green);
-  color:#fff
+  color:#fff;
 }
 
 /* ДОСТИЖЕНИЯ */
@@ -180,18 +244,18 @@ button{
   border-radius:22px;
   padding:25px;
   box-shadow:0 5px 20px #12352a0d;
-  border:1px solid #e2ebe6
+  border:1px solid #e2ebe6;
 }
 
 .achievements h2{
   margin-top:0;
-  margin-bottom:8px
+  margin-bottom:8px;
 }
 
 .progress{
   font-size:18px;
   font-weight:700;
-  margin:15px 0
+  margin:15px 0;
 }
 
 .progress-bar{
@@ -199,20 +263,20 @@ button{
   background:#e2ebe6;
   border-radius:20px;
   overflow:hidden;
-  margin-bottom:20px
+  margin-bottom:20px;
 }
 
 .progress-fill{
   height:100%;
   width:0%;
   background:var(--green);
-  transition:.4s
+  transition:.4s;
 }
 
 .achievement-grid{
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  gap:12px
+  gap:12px;
 }
 
 .achievement{
@@ -221,29 +285,29 @@ button{
   background:#f1f5f3;
   text-align:center;
   opacity:.45;
-  transition:.3s
+  transition:.3s;
 }
 
 .achievement.unlocked{
   opacity:1;
   background:#e7f5ed;
-  border:1px solid #b9dfca
+  border:1px solid #b9dfca;
 }
 
 .achievement-icon{
   font-size:30px;
-  margin-bottom:7px
+  margin-bottom:7px;
 }
 
 .achievement-title{
   font-weight:800;
-  font-size:14px
+  font-size:14px;
 }
 
 .achievement-desc{
   font-size:12px;
   color:var(--muted);
-  margin-top:5px
+  margin-top:5px;
 }
 
 .recycle-button{
@@ -251,11 +315,11 @@ button{
   color:#fff;
   font-size:16px;
   padding:14px 22px;
-  margin-top:10px
+  margin-top:10px;
 }
 
 .recycle-button:hover{
-  background:#16734b
+  background:#16734b;
 }
 
 .trust{
@@ -265,7 +329,7 @@ button{
   border-radius:12px;
   font-size:13px;
   line-height:1.5;
-  color:var(--muted)
+  color:var(--muted);
 }
 
 /* КАРТОЧКИ */
@@ -273,7 +337,7 @@ button{
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:18px
+  gap:18px;
 }
 
 .card{
@@ -281,23 +345,23 @@ button{
   padding:22px;
   border-radius:20px;
   box-shadow:0 5px 20px #12352a0d;
-  border:1px solid #e2ebe6
+  border:1px solid #e2ebe6;
 }
 
 .card h3{
   margin:0 0 8px;
-  font-size:20px
+  font-size:20px;
 }
 
 .addr{
   color:var(--muted);
-  margin-bottom:12px
+  margin-bottom:12px;
 }
 
 .tags{
   display:flex;
   gap:7px;
-  flex-wrap:wrap
+  flex-wrap:wrap;
 }
 
 .tag{
@@ -306,7 +370,7 @@ button{
   padding:6px 9px;
   border-radius:8px;
   font-size:13px;
-  font-weight:700
+  font-weight:700;
 }
 
 .map-button{
@@ -323,21 +387,93 @@ button{
   background:#16734b;
 }
 
+/* ЦЕНЫ */
+
+.prices-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.price-card{
+  background:#fff;
+  border:1px solid #e2ebe6;
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 5px 20px #12352a0d;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+
+.price-name{
+  font-weight:800;
+  font-size:16px;
+}
+
+.price-value{
+  color:var(--green);
+  font-size:18px;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.price-note{
+  margin-top:25px;
+  padding:17px;
+  background:#e7f5ed;
+  border-radius:15px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+
+/* О НАС */
+
+.about-card{
+  background:#fff;
+  border-radius:22px;
+  padding:28px;
+  border:1px solid #e2ebe6;
+  box-shadow:0 5px 20px #12352a0d;
+  line-height:1.65;
+}
+
+.about-card h3{
+  margin-top:25px;
+}
+
+.about-card h3:first-child{
+  margin-top:0;
+}
+
+.about-highlight{
+  background:#e7f5ed;
+  border-radius:17px;
+  padding:20px;
+  margin:20px 0;
+}
+
+.about-list{
+  padding-left:22px;
+}
+
 .info{
   margin-top:35px;
   background:#e7f5ed;
   border-radius:20px;
-  padding:22px
+  padding:22px;
 }
 
 .info h2{
-  margin-top:0
+  margin-top:0;
 }
 
 .small{
   font-size:13px;
   color:var(--muted);
-  line-height:1.5
+  line-height:1.5;
 }
 
 footer{
@@ -345,12 +481,38 @@ footer{
   background:#102d24;
   color:#cfe3da;
   text-align:center;
-  font-size:13px
+  font-size:13px;
 }
 
 @media(max-width:900px){
+
   .achievement-grid{
-    grid-template-columns:repeat(3,1fr)
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .prices-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:800px){
+
+  .topbar{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .top-actions{
+    width:100%;
+    justify-content:flex-start;
+  }
+
+  .navigation{
+    order:2;
+  }
+
+  .auth-area{
+    order:1;
   }
 }
 
@@ -360,12 +522,18 @@ footer{
     padding-top:20px;
   }
 
-  .topbar{
-    align-items:flex-start;
+  .top-actions{
+    gap:8px;
   }
 
-  .auth-area{
-    flex-shrink:0;
+  .navigation{
+    width:100%;
+  }
+
+  .nav-button{
+    flex:1;
+    padding:10px 7px;
+    font-size:13px;
   }
 
   .user-name{
@@ -378,19 +546,24 @@ footer{
   }
 
   .hero{
-    grid-template-columns:1fr
+    grid-template-columns:1fr;
   }
 
   h1{
-    font-size:40px
+    font-size:40px;
   }
 
   .grid{
-    grid-template-columns:1fr
+    grid-template-columns:1fr;
   }
 
   .achievement-grid{
-    grid-template-columns:repeat(2,1fr)
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .price-card{
+    align-items:flex-start;
+    flex-direction:column;
   }
 }
 </style>
@@ -405,6 +578,24 @@ footer{
 <div class="topbar">
 
 <div class="brand">♻️ RecycleMap Astana</div>
+
+<div class="top-actions">
+
+<nav class="navigation">
+
+<button class="nav-button active" data-section="points">
+🏠 Пункты приёма
+</button>
+
+<button class="nav-button" data-section="prices">
+💰 Цены
+</button>
+
+<button class="nav-button" data-section="about">
+ℹ️ О нас
+</button>
+
+</nav>
 
 <div class="auth-area">
 
@@ -421,6 +612,8 @@ footer{
 <button id="logoutButton" class="logout-button">
 Выйти
 </button>
+
+</div>
 
 </div>
 
@@ -459,15 +652,18 @@ footer{
 
 </header>
 
+
 <main class="wrap">
+
+<!-- ПУНКТЫ -->
+
+<section id="pointsSection" class="section active-section">
 
 <input
 id="search"
 class="search"
 placeholder="🔎 Поиск по адресу или названию..."
 >
-
-<!-- ДОСТИЖЕНИЯ -->
 
 <div class="achievements">
 
@@ -536,7 +732,6 @@ placeholder="🔎 Поиск по адресу или названию..."
 
 </div>
 
-<!-- ФИЛЬТРЫ -->
 
 <div class="controls" id="filters">
 
@@ -562,9 +757,9 @@ placeholder="🔎 Поиск по адресу или названию..."
 
 </div>
 
-<!-- СПИСОК -->
 
 <div class="grid" id="list"></div>
+
 
 <div class="info">
 
@@ -588,7 +783,193 @@ RecycleMap собирает пункты в одном месте
 
 </div>
 
+</section>
+
+
+<!-- ЦЕНЫ -->
+
+<section id="pricesSection" class="section">
+
+<h2 class="section-title">💰 Цены на вторсырьё</h2>
+
+<p class="section-subtitle">
+Актуальные цены на принимаемое вторсырьё по данным LS Ecolife.
+</p>
+
+<div class="prices-grid">
+
+<div class="price-card">
+<div class="price-name">📦 Картон</div>
+<div class="price-value">от 35 ₸/кг</div>
+</div>
+
+<div class="price-card">
+<div class="price-name">📄 Макулатура</div>
+<div class="price-value">от 40 ₸/кг</div>
+</div>
+
+<div class="price-card">
+<div class="price-name">🛍️ Отходы упаковочного полиэтилена</div>
+<div class="price-value">от 100 ₸/кг</div>
+</div>
+
+<div class="price-card">
+<div class="price-name">🥤 ПЭТ-бутылки</div>
+<div class="price-value">от 140 ₸/кг</div>
+</div>
+
+<div class="price-card">
+<div class="price-name">🥫 Алюминиевая банка</div>
+<div class="price-value">от 220 ₸/кг</div>
+</div>
+
+<div class="price-card">
+<div class="price-name">🪟 Стеклобой</div>
+<div class="price-value">от 12 ₸/кг</div>
+</div>
+
+<div class="price-card">
+<div class="price-name">🧴 Канистры ПНД из-под масел/тосола</div>
+<div class="price-value">от 150 ₸/кг</div>
+</div>
+
+<div class="price-card">
+<div class="price-name">📦 Пластиковые ящики</div>
+<div class="price-value">от 50 ₸/кг</div>
+</div>
+
+<div class="price-card">
+<div class="price-name">🔵 Трубы чёрные ПВД</div>
+<div class="price-value">от 230 ₸/кг</div>
+</div>
+
+<div class="price-card">
+<div class="price-name">🪟 Обрезки профиля ПВХ</div>
+<div class="price-value">от 50 ₸/кг</div>
+</div>
+
+<div class="price-card">
+<div class="price-name">🧴 Флаконы из-под бытовой химии</div>
+<div class="price-value">от 150 ₸/кг</div>
+</div>
+
+<div class="price-card">
+<div class="price-name">💧 Шланги системы капельного орошения</div>
+<div class="price-value">от 65 ₸/кг</div>
+</div>
+
+<div class="price-card">
+<div class="price-name">👜 Биг-бэг из-под песка и цемента</div>
+<div class="price-value">от 60 ₸/кг</div>
+</div>
+
+<div class="price-card">
+<div class="price-name">🥕 Овощные ящики</div>
+<div class="price-value">от 25 ₸/кг</div>
+</div>
+
+</div>
+
+<div class="price-note">
+
+💡 <b>Важно:</b> цены указаны как минимальная стоимость
+(«от») и могут зависеть от качества, состояния и вида сырья.
+Перед поездкой рекомендуется уточнить актуальную цену
+у пункта приёма.
+
+<br><br>
+
+<b>Источник:</b> LS Ecolife.
+
+</div>
+
+</section>
+
+
+<!-- О НАС -->
+
+<section id="aboutSection" class="section">
+
+<h2 class="section-title">ℹ️ О RecycleMap Astana</h2>
+
+<p class="section-subtitle">
+Экологический проект для жителей Астаны.
+</p>
+
+<div class="about-card">
+
+<h3>🌱 Что такое RecycleMap?</h3>
+
+<p>
+RecycleMap Astana — это школьный социальный проект,
+который помогает жителям Астаны быстрее находить места,
+где можно сдать вторсырьё.
+</p>
+
+<div class="about-highlight">
+
+<b>💡 Проблема</b>
+
+<p>
+Информация о пунктах приёма вторсырья может находиться
+в разных местах, поэтому человеку бывает сложно быстро
+понять, куда отвезти конкретный вид отходов.
+</p>
+
+</div>
+
+<h3>🎯 Цель проекта</h3>
+
+<p>
+Собрать полезную информацию в одном месте:
+адреса пунктов, принимаемые материалы, график работы
+и цены на вторсырьё.
+</p>
+
+<h3>♻️ Что умеет сайт?</h3>
+
+<ul class="about-list">
+
+<li>🔎 Поиск пунктов по названию и адресу</li>
+
+<li>🥤 Фильтрация по типу вторсырья</li>
+
+<li>🗺️ Переход к пункту на карте</li>
+
+<li>💰 Просмотр цен на принимаемое сырьё</li>
+
+<li>🏆 Персональные экологические достижения</li>
+
+<li>🔐 Авторизация через Google</li>
+
+<li>☁️ Сохранение достижений в аккаунте</li>
+
+</ul>
+
+<h3>📊 Откуда берутся данные?</h3>
+
+<p>
+Информация о пунктах и ценах основана на данных
+LS Ecolife и картографической информации.
+Поскольку адреса, графики и цены могут меняться,
+перед поездкой рекомендуется проверить актуальность данных.
+</p>
+
+<h3>🌍 Почему это важно?</h3>
+
+<p>
+Раздельный сбор позволяет направлять часть отходов
+на переработку вместо обычного захоронения.
+Мы хотим сделать первый шаг к этому проще:
+найти нужный пункт должно быть быстро и удобно.
+</p>
+
+</div>
+
+</section>
+
 </main>
+
 
 <footer>
 RecycleMap Astana · школьный социальный проект · данные требуют периодического обновления
@@ -620,8 +1001,6 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-
-/* FIREBASE */
 
 const firebaseConfig = {
 
@@ -703,7 +1082,198 @@ logoutButton.onclick = async () => {
 };
 
 
-/* ТОЧКИ ПРИЁМА */
+/* ДОСТИЖЕНИЯ */
+
+let recycleCount = 0;
+
+let currentUser = null;
+
+
+function updateAchievements(){
+
+  document.getElementById("count").textContent =
+    recycleCount;
+
+  const progress =
+    Math.min((recycleCount / 50) * 100, 100);
+
+  document.getElementById("progressFill")
+    .style.width = progress + "%";
+
+
+  const achievements = [
+
+    ["a1",1],
+    ["a2",5],
+    ["a3",10],
+    ["a4",25],
+    ["a5",50]
+
+  ];
+
+
+  achievements.forEach(([id, required]) => {
+
+    document.getElementById(id)
+      .classList.toggle(
+        "unlocked",
+        recycleCount >= required
+      );
+
+  });
+
+}
+
+
+async function loadUserAchievements(user){
+
+  try {
+
+    const userRef =
+      doc(db, "users", user.uid);
+
+    const userSnapshot =
+      await getDoc(userRef);
+
+
+    if(userSnapshot.exists()){
+
+      const data =
+        userSnapshot.data();
+
+      recycleCount =
+        Number(data.recycleCount) || 0;
+
+    }else{
+
+      recycleCount = 0;
+
+      await setDoc(
+        userRef,
+        {
+          recycleCount: 0
+        }
+      );
+
+    }
+
+    updateAchievements();
+
+  } catch(error) {
+
+    console.error(
+      "Ошибка загрузки достижений:",
+      error
+    );
+
+    alert(
+      "Не удалось загрузить достижения из базы данных."
+    );
+
+  }
+
+}
+
+
+document
+.getElementById("recycleButton")
+.onclick = async () => {
+
+  if(!currentUser){
+
+    alert(
+      "Сначала войдите через Google, чтобы сохранять свои достижения."
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    const userRef =
+      doc(db, "users", currentUser.uid);
+
+
+    await setDoc(
+      userRef,
+      {
+        recycleCount: increment(1)
+      },
+      {
+        merge:true
+      }
+    );
+
+
+    recycleCount++;
+
+    updateAchievements();
+
+  } catch(error) {
+
+    console.error(
+      "Ошибка сохранения:",
+      error
+    );
+
+    alert(
+      "Не удалось сохранить достижение."
+    );
+
+  }
+
+};
+
+
+/* ПРОВЕРКА ВХОДА */
+
+onAuthStateChanged(
+  auth,
+  async (user) => {
+
+    currentUser = user;
+
+
+    if(user){
+
+      loginButton.style.display = "none";
+
+      userInfo.style.display = "flex";
+
+      userName.textContent =
+        user.displayName || "Пользователь";
+
+
+      if(user.photoURL){
+
+        userPhoto.src =
+          user.photoURL;
+
+      }
+
+
+      await loadUserAchievements(user);
+
+
+    }else{
+
+      loginButton.style.display = "block";
+
+      userInfo.style.display = "none";
+
+      recycleCount = 0;
+
+      updateAchievements();
+
+    }
+
+  }
+);
+
+
+/* ПУНКТЫ ПРИЁМА */
 
 const points = [
 
@@ -782,204 +1352,6 @@ map:"https://www.google.com/maps/search/?api=1&query=Астана+ул.+Сыга
 ];
 
 let filter = "all";
-
-
-/* ДОСТИЖЕНИЯ */
-
-let recycleCount = 0;
-
-let currentUser = null;
-
-
-function updateAchievements(){
-
-  document.getElementById("count").textContent =
-    recycleCount;
-
-  const progress =
-    Math.min((recycleCount / 50) * 100, 100);
-
-  document.getElementById("progressFill")
-    .style.width = progress + "%";
-
-
-  const achievements = [
-
-    ["a1",1],
-    ["a2",5],
-    ["a3",10],
-    ["a4",25],
-    ["a5",50]
-
-  ];
-
-
-  achievements.forEach(([id, required]) => {
-
-    document.getElementById(id)
-      .classList.toggle(
-        "unlocked",
-        recycleCount >= required
-      );
-
-  });
-
-}
-
-
-/* ЗАГРУЗКА ДОСТИЖЕНИЙ ПОЛЬЗОВАТЕЛЯ */
-
-async function loadUserAchievements(user){
-
-  try {
-
-    const userRef =
-      doc(db, "users", user.uid);
-
-    const userSnapshot =
-      await getDoc(userRef);
-
-
-    if(userSnapshot.exists()){
-
-      const data =
-        userSnapshot.data();
-
-      recycleCount =
-        Number(data.recycleCount) || 0;
-
-    }else{
-
-      recycleCount = 0;
-
-      await setDoc(
-        userRef,
-        {
-          recycleCount: 0
-        }
-      );
-
-    }
-
-    updateAchievements();
-
-  } catch(error) {
-
-    console.error(
-      "Ошибка загрузки достижений:",
-      error
-    );
-
-    alert(
-      "Не удалось загрузить достижения из базы данных."
-    );
-
-  }
-
-}
-
-
-/* СОХРАНЕНИЕ НОВОЙ СДАЧИ */
-
-document
-.getElementById("recycleButton")
-.onclick = async () => {
-
-  if(!currentUser){
-
-    alert(
-      "Сначала войдите через Google, чтобы сохранять свои достижения."
-    );
-
-    return;
-
-  }
-
-
-  try {
-
-    const userRef =
-      doc(db, "users", currentUser.uid);
-
-
-    await setDoc(
-      userRef,
-      {
-        recycleCount: increment(1)
-      },
-      {
-        merge:true
-      }
-    );
-
-
-    recycleCount++;
-
-    updateAchievements();
-
-  } catch(error) {
-
-    console.error(
-      "Ошибка сохранения:",
-      error
-    );
-
-    alert(
-      "Не удалось сохранить достижение."
-    );
-
-  }
-
-};
-
-
-updateAchievements();
-
-
-/* ПРОВЕРКА ВХОДА */
-
-onAuthStateChanged(
-  auth,
-  async (user) => {
-
-    currentUser = user;
-
-
-    if(user){
-
-      loginButton.style.display = "none";
-
-      userInfo.style.display = "flex";
-
-      userName.textContent =
-        user.displayName || "Пользователь";
-
-
-      if(user.photoURL){
-
-        userPhoto.src =
-          user.photoURL;
-
-      }
-
-
-      await loadUserAchievements(user);
-
-
-    }else{
-
-      loginButton.style.display = "block";
-
-      userInfo.style.display = "none";
-
-      recycleCount = 0;
-
-      updateAchievements();
-
-    }
-
-  }
-);
 
 
 /* ПОИСК И ФИЛЬТРЫ */
@@ -1082,6 +1454,49 @@ document
 document
 .getElementById("search")
 .oninput = render;
+
+
+/* НАВИГАЦИЯ */
+
+document
+.querySelectorAll(".nav-button")
+.forEach(button => {
+
+  button.onclick = () => {
+
+    const section =
+      button.dataset.section;
+
+
+    document
+      .querySelectorAll(".nav-button")
+      .forEach(x =>
+        x.classList.remove("active")
+      );
+
+    button.classList.add("active");
+
+
+    document
+      .querySelectorAll(".section")
+      .forEach(x =>
+        x.classList.remove("active-section")
+      );
+
+
+    document
+      .getElementById(section + "Section")
+      .classList.add("active-section");
+
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  };
+
+});
 
 
 render();
