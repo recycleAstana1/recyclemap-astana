@@ -135,7 +135,7 @@
         white;
 
       padding:
-        18px 20px;
+        16px 20px;
 
       position:
         sticky;
@@ -168,7 +168,7 @@
         space-between;
 
       gap:
-        20px;
+        25px;
 
     }
 
@@ -186,6 +186,155 @@
 
     }
 
+
+    .header-right {
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      align-items:
+        flex-end;
+
+      gap:
+        8px;
+
+    }
+
+
+    /* ================= AUTH HEADER ================= */
+
+    .header-auth {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        flex-end;
+
+      gap:
+        8px;
+
+      min-height:
+        38px;
+
+    }
+
+
+    .header-login-button {
+
+      border:
+        none;
+
+      background:
+        white;
+
+      color:
+        #17352a;
+
+      padding:
+        9px 15px;
+
+      border-radius:
+        9px;
+
+      cursor:
+        pointer;
+
+      font-size:
+        13px;
+
+      font-weight:
+        bold;
+
+      transition:
+        0.2s;
+
+    }
+
+
+    .header-login-button:hover {
+
+      background:
+        #e5f4eb;
+
+    }
+
+
+    .header-user {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+
+      font-size:
+        13px;
+
+    }
+
+
+    .header-user-name {
+
+      background:
+        rgba(255,255,255,0.1);
+
+      padding:
+        8px 10px;
+
+      border-radius:
+        8px;
+
+    }
+
+
+    .header-logout-button {
+
+      border:
+        none;
+
+      background:
+        #d94a4a;
+
+      color:
+        white;
+
+      padding:
+        8px 11px;
+
+      border-radius:
+        8px;
+
+      cursor:
+        pointer;
+
+      font-size:
+        13px;
+
+      font-weight:
+        bold;
+
+    }
+
+
+    .header-logout-button:hover {
+
+      background:
+        #b93838;
+
+    }
+
+
+    /* ================= NAV ================= */
 
     .nav {
 
@@ -216,7 +365,7 @@
         white;
 
       padding:
-        10px 13px;
+        9px 13px;
 
       border-radius:
         10px;
@@ -869,6 +1018,14 @@
     }
 
 
+    .achievement-button:hover {
+
+      background:
+        #176c48;
+
+    }
+
+
     .progress-container {
 
       background:
@@ -930,75 +1087,6 @@
 
       line-height:
         1.5;
-
-    }
-
-
-    .auth-box {
-
-      margin-top:
-        18px;
-
-      padding:
-        15px;
-
-      background:
-        #f2f8f4;
-
-      border-radius:
-        12px;
-
-    }
-
-
-    .login-button {
-
-      border:
-        none;
-
-      background:
-        #4285f4;
-
-      color:
-        white;
-
-      padding:
-        11px 16px;
-
-      border-radius:
-        9px;
-
-      cursor:
-        pointer;
-
-      font-weight:
-        bold;
-
-    }
-
-
-    .logout-button {
-
-      border:
-        none;
-
-      background:
-        #d94a4a;
-
-      color:
-        white;
-
-      padding:
-        11px 16px;
-
-      border-radius:
-        9px;
-
-      cursor:
-        pointer;
-
-      font-weight:
-        bold;
 
     }
 
@@ -1299,6 +1387,28 @@
         flex-direction:
           column;
 
+        align-items:
+          center;
+
+      }
+
+
+      .header-right {
+
+        width:
+          100%;
+
+        align-items:
+          center;
+
+      }
+
+
+      .header-auth {
+
+        justify-content:
+          center;
+
       }
 
 
@@ -1313,7 +1423,7 @@
       .hero h1 {
 
         font-size:
-          29px;
+        29px;
 
       }
 
@@ -1374,49 +1484,99 @@
 
   <div class="header-inner">
 
+
     <div class="logo">
       ♻️ RecycleMap Astana
     </div>
 
 
-    <nav class="nav">
-
-      <button
-        class="nav-button active"
-        data-section="points">
-
-        🏠 Пункты
-
-      </button>
+    <div class="header-right">
 
 
-      <button
-        class="nav-button"
-        data-section="prices">
+      <!-- GOOGLE LOGIN СВЕРХУ СПРАВА -->
 
-        💰 Цены
-
-      </button>
+      <div class="header-auth">
 
 
-      <button
-        class="nav-button"
-        data-section="calculator">
+        <button
+          id="headerLoginButton"
+          class="header-login-button">
 
-        🧮 Калькулятор
+          🔐 Войти через Google
 
-      </button>
+        </button>
 
 
-      <button
-        class="nav-button"
-        data-section="about">
+        <div
+          id="headerUser"
+          class="header-user"
+          style="display:none;">
 
-        ℹ️ О нас
+          <span
+            id="headerUserName"
+            class="header-user-name">
+          </span>
 
-      </button>
 
-    </nav>
+          <button
+            id="headerLogoutButton"
+            class="header-logout-button">
+
+            Выйти
+
+          </button>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- NAV НИЖЕ ВХОДА -->
+
+      <nav class="nav">
+
+
+        <button
+          class="nav-button active"
+          data-section="points">
+
+          🏠 Пункты
+
+        </button>
+
+
+        <button
+          class="nav-button"
+          data-section="prices">
+
+          💰 Цены
+
+        </button>
+
+
+        <button
+          class="nav-button"
+          data-section="calculator">
+
+          🧮 Калькулятор
+
+        </button>
+
+
+        <button
+          class="nav-button"
+          data-section="about">
+
+          ℹ️ О нас
+
+        </button>
+
+
+      </nav>
+
+
+    </div>
 
   </div>
 
@@ -2049,8 +2209,7 @@
         <div class="school-note">
 
           ℹ️ Перед поездкой лучше проверить
-          конкретный фандомат на актуальной карте
-          Sparklo.
+          конкретный фандомат на актуальной карте Sparklo.
 
         </div>
 
@@ -2315,37 +2474,6 @@
     </p>
 
 
-    <div class="auth-box">
-
-      <button
-        id="loginButton"
-        class="login-button">
-
-        🔐 Войти через Google
-
-      </button>
-
-
-      <div
-        id="userInfo"
-        style="display:none;">
-
-        <p id="userName"></p>
-
-
-        <button
-          id="logoutButton"
-          class="logout-button">
-
-          Выйти
-
-        </button>
-
-      </div>
-
-    </div>
-
-
     <div class="achievement-count">
 
       Сдано:
@@ -2418,189 +2546,90 @@
 
 
     <div class="price-card">
-
-      <span>
-        Картон
-      </span>
-
-      <strong>
-        от 35 ₸/кг
-      </strong>
-
+      <span>Картон</span>
+      <strong>от 35 ₸/кг</strong>
     </div>
 
 
     <div class="price-card">
-
-      <span>
-        Макулатура
-      </span>
-
-      <strong>
-        от 40 ₸/кг
-      </strong>
-
+      <span>Макулатура</span>
+      <strong>от 40 ₸/кг</strong>
     </div>
 
 
     <div class="price-card">
-
-      <span>
-        Упаковочный полиэтилен
-      </span>
-
-      <strong>
-        от 100 ₸/кг
-      </strong>
-
+      <span>Упаковочный полиэтилен</span>
+      <strong>от 100 ₸/кг</strong>
     </div>
 
 
     <div class="price-card">
-
-      <span>
-        ПЭТ-бутылки
-      </span>
-
-      <strong>
-        от 140 ₸/кг
-      </strong>
-
+      <span>ПЭТ-бутылки</span>
+      <strong>от 140 ₸/кг</strong>
     </div>
 
 
     <div class="price-card">
-
-      <span>
-        Алюминиевая банка
-      </span>
-
-      <strong>
-        от 220 ₸/кг
-      </strong>
-
+      <span>Алюминиевая банка</span>
+      <strong>от 220 ₸/кг</strong>
     </div>
 
 
     <div class="price-card">
-
-      <span>
-        Стеклобой
-      </span>
-
-      <strong>
-        от 12 ₸/кг
-      </strong>
-
+      <span>Стеклобой</span>
+      <strong>от 12 ₸/кг</strong>
     </div>
 
 
     <div class="price-card">
-
-      <span>
-        Канистры ПНД
-      </span>
-
-      <strong>
-        от 150 ₸/кг
-      </strong>
-
+      <span>Канистры ПНД</span>
+      <strong>от 150 ₸/кг</strong>
     </div>
 
 
     <div class="price-card">
-
-      <span>
-        Пластиковые ящики
-      </span>
-
-      <strong>
-        от 50 ₸/кг
-      </strong>
-
+      <span>Пластиковые ящики</span>
+      <strong>от 50 ₸/кг</strong>
     </div>
 
 
     <div class="price-card">
-
-      <span>
-        Трубы ПВД
-      </span>
-
-      <strong>
-        от 230 ₸/кг
-      </strong>
-
+      <span>Трубы ПВД</span>
+      <strong>от 230 ₸/кг</strong>
     </div>
 
 
     <div class="price-card">
-
-      <span>
-        Обрезки ПВХ
-      </span>
-
-      <strong>
-        от 50 ₸/кг
-      </strong>
-
+      <span>Обрезки ПВХ</span>
+      <strong>от 50 ₸/кг</strong>
     </div>
 
 
     <div class="price-card">
-
-      <span>
-        Флаконы бытовой химии
-      </span>
-
-      <strong>
-        от 150 ₸/кг
-      </strong>
-
+      <span>Флаконы бытовой химии</span>
+      <strong>от 150 ₸/кг</strong>
     </div>
 
 
     <div class="price-card">
-
-      <span>
-        Шланги
-      </span>
-
-      <strong>
-        от 65 ₸/кг
-      </strong>
-
+      <span>Шланги</span>
+      <strong>от 65 ₸/кг</strong>
     </div>
 
 
     <div class="price-card">
-
-      <span>
-        Биг-бэг
-      </span>
-
-      <strong>
-        от 60 ₸/кг
-      </strong>
-
+      <span>Биг-бэг</span>
+      <strong>от 60 ₸/кг</strong>
     </div>
 
 
     <div class="price-card">
-
-      <span>
-        Овощные ящики
-      </span>
-
-      <strong>
-        от 25 ₸/кг
-      </strong>
-
+      <span>Овощные ящики</span>
+      <strong>от 25 ₸/кг</strong>
     </div>
 
 
   </div>
-
 
 </section>
 
@@ -2808,45 +2837,25 @@
 
     <ul>
 
-      <li>
-        🗺️ Показывает карту пунктов
-      </li>
+      <li>🗺️ Показывает карту пунктов</li>
 
-      <li>
-        🔎 Позволяет искать пункты
-      </li>
+      <li>🔎 Позволяет искать пункты</li>
 
-      <li>
-        🧴 Фильтрует пластик
-      </li>
+      <li>🧴 Фильтрует пластик</li>
 
-      <li>
-        📄 Фильтрует бумагу
-      </li>
+      <li>📄 Фильтрует бумагу</li>
 
-      <li>
-        🥫 Фильтрует алюминий
-      </li>
+      <li>🥫 Фильтрует алюминий</li>
 
-      <li>
-        🍾 Фильтрует стекло
-      </li>
+      <li>🍾 Фильтрует стекло</li>
 
-      <li>
-        💰 Показывает цены
-      </li>
+      <li>💰 Показывает цены</li>
 
-      <li>
-        🧮 Рассчитывает примерную стоимость
-      </li>
+      <li>🧮 Рассчитывает примерную стоимость</li>
 
-      <li>
-        🏆 Хранит эко-достижения
-      </li>
+      <li>🏆 Хранит эко-достижения</li>
 
-      <li>
-        🔐 Позволяет войти через Google
-      </li>
+      <li>🔐 Позволяет войти через Google</li>
 
     </ul>
 
@@ -2896,7 +2905,6 @@
 /* ================================================= */
 /* NAVIGATION */
 /* ================================================= */
-
 
 const navButtons =
   document.querySelectorAll(".nav-button");
@@ -2969,7 +2977,6 @@ navButtons.forEach(button => {
 /* SEARCH + FILTER */
 /* ================================================= */
 
-
 const searchInput =
   document.getElementById("searchInput");
 
@@ -2996,7 +3003,6 @@ function applyFilters() {
     .querySelectorAll(".point-card")
     .forEach(card => {
 
-
       const text =
         card.textContent
           .toLowerCase();
@@ -3012,9 +3018,7 @@ function applyFilters() {
 
       const matchesFilter =
         currentFilter === "all" ||
-        types.includes(
-          currentFilter
-        );
+        types.includes(currentFilter);
 
 
       card.style.display =
@@ -3039,7 +3043,6 @@ filterButtons.forEach(button => {
   button.addEventListener(
     "click",
     () => {
-
 
       currentFilter =
         button.dataset.filter;
@@ -3071,7 +3074,6 @@ filterButtons.forEach(button => {
 /* MORE POINTS */
 /* ================================================= */
 
-
 const moreButton =
   document.getElementById(
     "morePointsButton"
@@ -3087,7 +3089,6 @@ const extraPoints =
 moreButton.addEventListener(
   "click",
   () => {
-
 
     extraPoints.classList.toggle(
       "show"
@@ -3118,7 +3119,6 @@ moreButton.addEventListener(
 /* CALCULATOR */
 /* ================================================= */
 
-
 const calculatorRows =
   document.getElementById(
     "calculatorRows"
@@ -3139,7 +3139,6 @@ const totalPrice =
 
 function calculateTotal() {
 
-
   let total = 0;
 
 
@@ -3148,7 +3147,6 @@ function calculateTotal() {
       ".calculator-row"
     )
     .forEach(row => {
-
 
       const select =
         row.querySelector(
@@ -3193,7 +3191,6 @@ function calculateTotal() {
 
 
 function addMaterialRow() {
-
 
   const firstRow =
     document.querySelector(
@@ -3242,13 +3239,11 @@ calculatorRows.addEventListener(
   "click",
   event => {
 
-
     if (
       event.target.classList.contains(
         "remove-material"
       )
     ) {
-
 
       const rows =
         document.querySelectorAll(
@@ -3257,7 +3252,6 @@ calculatorRows.addEventListener(
 
 
       if (rows.length > 1) {
-
 
         event.target
           .closest(
@@ -3283,7 +3277,6 @@ calculateTotal();
 /* FIREBASE */
 /* ================================================= */
 
-
 const {
 
   auth,
@@ -3302,29 +3295,33 @@ const {
 } = window.firebaseTools;
 
 
-const loginButton =
+/* ================= HEADER AUTH ================= */
+
+const headerLoginButton =
   document.getElementById(
-    "loginButton"
+    "headerLoginButton"
   );
 
 
-const logoutButton =
+const headerLogoutButton =
   document.getElementById(
-    "logoutButton"
+    "headerLogoutButton"
   );
 
 
-const userInfo =
+const headerUser =
   document.getElementById(
-    "userInfo"
+    "headerUser"
   );
 
 
-const userName =
+const headerUserName =
   document.getElementById(
-    "userName"
+    "headerUserName"
   );
 
+
+/* ================= ACHIEVEMENTS ================= */
 
 const recycleButton =
   document.getElementById(
@@ -3368,7 +3365,6 @@ function updateAchievementUI(
   count
 ) {
 
-
   recycleCount.textContent =
     count;
 
@@ -3381,7 +3377,6 @@ function updateAchievementUI(
 
 
   if (!next) {
-
 
     progressBar.style.width =
       "100%";
@@ -3423,10 +3418,11 @@ function updateAchievementUI(
 }
 
 
+/* ================= LOAD ACHIEVEMENTS ================= */
+
 async function loadUserAchievements(
   user
 ) {
-
 
   if (!user) {
 
@@ -3453,7 +3449,6 @@ async function loadUserAchievements(
 
   if (snapshot.exists()) {
 
-
     const data =
       snapshot.data();
 
@@ -3464,7 +3459,6 @@ async function loadUserAchievements(
 
 
   } else {
-
 
     await setDoc(
       userRef,
@@ -3481,28 +3475,22 @@ async function loadUserAchievements(
 }
 
 
-/* LOGIN */
+/* ================= LOGIN ================= */
 
-
-loginButton.addEventListener(
+headerLoginButton.addEventListener(
   "click",
   async () => {
 
-
     try {
-
 
       await signInWithPopup(
         auth,
         provider
       );
 
-
     } catch (error) {
 
-
       console.error(error);
-
 
       alert(
         "Не удалось войти через Google."
@@ -3514,10 +3502,9 @@ loginButton.addEventListener(
 );
 
 
-/* LOGOUT */
+/* ================= LOGOUT ================= */
 
-
-logoutButton.addEventListener(
+headerLogoutButton.addEventListener(
   "click",
   async () => {
 
@@ -3527,21 +3514,17 @@ logoutButton.addEventListener(
 );
 
 
-/* RECYCLE */
-
+/* ================= RECYCLE ================= */
 
 recycleButton.addEventListener(
   "click",
   async () => {
 
-
     if (!currentUser) {
-
 
       alert(
         "Сначала войди через Google."
       );
-
 
       return;
 
@@ -3549,7 +3532,6 @@ recycleButton.addEventListener(
 
 
     try {
-
 
       const userRef =
         doc(
@@ -3582,7 +3564,6 @@ recycleButton.addEventListener(
 
     } catch (error) {
 
-
       console.error(error);
 
 
@@ -3596,13 +3577,11 @@ recycleButton.addEventListener(
 );
 
 
-/* AUTH STATE */
-
+/* ================= AUTH STATE ================= */
 
 onAuthStateChanged(
   auth,
   async user => {
-
 
     currentUser =
       user;
@@ -3610,16 +3589,15 @@ onAuthStateChanged(
 
     if (user) {
 
-
-      loginButton.style.display =
+      headerLoginButton.style.display =
         "none";
 
 
-      userInfo.style.display =
-        "block";
+      headerUser.style.display =
+        "flex";
 
 
-      userName.textContent =
+      headerUserName.textContent =
         `👤 ${user.displayName || user.email}`;
 
 
@@ -3630,16 +3608,15 @@ onAuthStateChanged(
 
     } else {
 
-
-      loginButton.style.display =
+      headerLoginButton.style.display =
         "inline-block";
 
 
-      userInfo.style.display =
+      headerUser.style.display =
         "none";
 
 
-      userName.textContent =
+      headerUserName.textContent =
         "";
 
 
