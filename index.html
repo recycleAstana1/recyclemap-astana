@@ -64,6 +64,7 @@ header{
 .navigation{
   display:flex;
   gap:7px;
+  flex-wrap:wrap;
 }
 
 .nav-button{
@@ -429,6 +430,83 @@ button{
   line-height:1.5;
 }
 
+/* КАЛЬКУЛЯТОР */
+
+.calculator-card{
+  background:#fff;
+  border:1px solid #e2ebe6;
+  border-radius:22px;
+  padding:25px;
+  box-shadow:0 5px 20px #12352a0d;
+}
+
+.calculator-row{
+  display:grid;
+  grid-template-columns:1fr 150px 45px;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.material-select,
+.weight-input{
+  width:100%;
+  padding:13px;
+  border:1px solid #d8e3dd;
+  border-radius:12px;
+  font-size:15px;
+  background:#fff;
+  color:var(--dark);
+}
+
+.remove-material{
+  background:#f1f3f2;
+  color:#777;
+  padding:10px;
+}
+
+.remove-material:hover{
+  background:#ffe5e5;
+  color:#c33;
+}
+
+.add-material{
+  background:var(--green);
+  color:#fff;
+  margin-top:5px;
+}
+
+.add-material:hover{
+  background:#16734b;
+}
+
+.calculator-total{
+  margin-top:25px;
+  padding:22px;
+  border-radius:18px;
+  background:#e7f5ed;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+
+.calculator-total span{
+  font-size:18px;
+  font-weight:700;
+}
+
+.calculator-total strong{
+  font-size:28px;
+  color:var(--green);
+}
+
+.calculator-note{
+  margin-top:18px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+
 /* О НАС */
 
 .about-card{
@@ -514,6 +592,10 @@ footer{
   .auth-area{
     order:1;
   }
+
+  .calculator-row{
+    grid-template-columns:1fr 120px 45px;
+  }
 }
 
 @media(max-width:750px){
@@ -565,6 +647,19 @@ footer{
     align-items:flex-start;
     flex-direction:column;
   }
+
+  .calculator-row{
+    grid-template-columns:1fr;
+  }
+
+  .remove-material{
+    width:100%;
+  }
+
+  .calculator-total{
+    flex-direction:column;
+    align-items:flex-start;
+  }
 }
 </style>
 </head>
@@ -591,6 +686,10 @@ footer{
 💰 Цены
 </button>
 
+<button class="nav-button" data-section="calculator">
+🧮 Калькулятор
+</button>
+
 <button class="nav-button" data-section="about">
 ℹ️ О нас
 </button>
@@ -605,7 +704,7 @@ footer{
 
 <div id="userInfo" class="user-info">
 
-<img id="userPhoto" class="user-photo" src="" alt="">
+<img id="userPhoto" class="user-photo" src="" alt="Фото пользователя">
 
 <span id="userName" class="user-name"></span>
 
@@ -886,6 +985,110 @@ RecycleMap собирает пункты в одном месте
 </section>
 
 
+<!-- КАЛЬКУЛЯТОР -->
+
+<section id="calculatorSection" class="section">
+
+<h2 class="section-title">🧮 Калькулятор стоимости</h2>
+
+<p class="section-subtitle">
+Посчитайте примерную стоимость вашего вторсырья.
+Можно добавить несколько видов материалов.
+</p>
+
+<div class="calculator-card">
+
+<div id="calculatorRows">
+
+<div class="calculator-row">
+
+<select class="material-select">
+
+<option value="35">📦 Картон — 35 ₸/кг</option>
+
+<option value="40">📄 Макулатура — 40 ₸/кг</option>
+
+<option value="100">🛍️ Упаковочный полиэтилен — 100 ₸/кг</option>
+
+<option value="140">🥤 ПЭТ-бутылки — 140 ₸/кг</option>
+
+<option value="220">🥫 Алюминиевая банка — 220 ₸/кг</option>
+
+<option value="12">🪟 Стеклобой — 12 ₸/кг</option>
+
+<option value="150">🧴 Канистры ПНД — 150 ₸/кг</option>
+
+<option value="50">📦 Пластиковые ящики — 50 ₸/кг</option>
+
+<option value="230">🔵 Трубы чёрные ПВД — 230 ₸/кг</option>
+
+<option value="50">🪟 Обрезки профиля ПВХ — 50 ₸/кг</option>
+
+<option value="150">🧴 Флаконы бытовой химии — 150 ₸/кг</option>
+
+<option value="65">💧 Шланги капельного орошения — 65 ₸/кг</option>
+
+<option value="60">👜 Биг-бэг — 60 ₸/кг</option>
+
+<option value="25">🥕 Овощные ящики — 25 ₸/кг</option>
+
+</select>
+
+<input
+type="number"
+class="weight-input"
+min="0"
+step="0.1"
+placeholder="Вес, кг"
+>
+
+<button
+type="button"
+class="remove-material"
+title="Удалить материал"
+>
+✕
+</button>
+
+</div>
+
+</div>
+
+
+<button
+type="button"
+class="add-material"
+id="addMaterial"
+>
+➕ Добавить материал
+</button>
+
+
+<div class="calculator-total">
+
+<span>💰 Примерная стоимость:</span>
+
+<strong id="totalPrice">
+0 ₸
+</strong>
+
+</div>
+
+
+<div class="calculator-note">
+
+⚠️ <b>Обратите внимание:</b> расчёт является ориентировочным.
+Цены указаны в формате «от» и могут зависеть от качества,
+состояния и вида сырья. Фактическую стоимость лучше уточнить
+в пункте приёма.
+
+</div>
+
+</div>
+
+</section>
+
+
 <!-- О НАС -->
 
 <section id="aboutSection" class="section">
@@ -937,6 +1140,8 @@ RecycleMap Astana — это школьный социальный проект,
 <li>🗺️ Переход к пункту на карте</li>
 
 <li>💰 Просмотр цен на принимаемое сырьё</li>
+
+<li>🧮 Расчёт примерной стоимости вторсырья</li>
 
 <li>🏆 Персональные экологические достижения</li>
 
@@ -1497,6 +1702,127 @@ document
   };
 
 });
+
+
+/* КАЛЬКУЛЯТОР */
+
+const calculatorRows =
+document.getElementById("calculatorRows");
+
+const addMaterialButton =
+document.getElementById("addMaterial");
+
+const totalPrice =
+document.getElementById("totalPrice");
+
+
+function calculateTotal(){
+
+  let total = 0;
+
+
+  document
+    .querySelectorAll(".calculator-row")
+    .forEach(row => {
+
+      const select =
+        row.querySelector(".material-select");
+
+      const input =
+        row.querySelector(".weight-input");
+
+
+      const price =
+        Number(select.value);
+
+      const weight =
+        Number(input.value);
+
+
+      if(weight > 0){
+
+        total += price * weight;
+
+      }
+
+    });
+
+
+  totalPrice.textContent =
+    total.toLocaleString("ru-RU") + " ₸";
+
+}
+
+
+function addMaterialRow(){
+
+  const firstRow =
+    document.querySelector(".calculator-row");
+
+  const newRow =
+    firstRow.cloneNode(true);
+
+
+  newRow.querySelector(".weight-input").value = "";
+
+
+  calculatorRows.appendChild(newRow);
+
+
+  calculateTotal();
+
+}
+
+
+addMaterialButton.onclick =
+addMaterialRow;
+
+
+calculatorRows.addEventListener(
+  "input",
+  calculateTotal
+);
+
+
+calculatorRows.addEventListener(
+  "change",
+  calculateTotal
+);
+
+
+calculatorRows.addEventListener(
+  "click",
+  event => {
+
+    if(
+      event.target.classList.contains(
+        "remove-material"
+      )
+    ){
+
+      const rows =
+        document.querySelectorAll(
+          ".calculator-row"
+        );
+
+
+      if(rows.length > 1){
+
+        event.target
+          .closest(".calculator-row")
+          .remove();
+
+        calculateTotal();
+
+      }
+
+    }
+
+  }
+);
+
+
+calculateTotal();
 
 
 render();
